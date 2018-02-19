@@ -1,0 +1,30 @@
+{
+  "name": "modul13_6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malgorzatakapuscinska/modul13_5.git"
+  },
+  "keywords": [
+    "nauka",
+    "npm",
+    "node"
+  ],
+  "author": "m_kapuscinska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malgorzatakapuscinska/modul13_5/issues"
+  },
+  "homepage": "https://github.com/malgorzatakapuscinska/modul13_5#readme",
+  "dependencies": {
+    "browser-sync": "^2.23.6",
+    "colors": "^1.1.2",
+    "stat-mode": "^0.2.2"
+  }
+}
