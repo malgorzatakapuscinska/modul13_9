@@ -1,5 +1,5 @@
 {
-  "name": "modul13_6",
+  "name": "modul13_9",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,9 +12,6 @@
     "url": "git+https://github.com/malgorzatakapuscinska/modul13_5.git"
   },
   "keywords": [
-    "nauka",
-    "npm",
-    "node"
   ],
   "author": "m_kapuscinska",
   "license": "ISC",
