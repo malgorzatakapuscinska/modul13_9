@@ -11,8 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/malgorzatakapuscinska/modul13_5.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "m_kapuscinska",
   "license": "ISC",
   "bugs": {
@@ -22,6 +21,7 @@
   "dependencies": {
     "browser-sync": "^2.23.6",
     "colors": "^1.1.2",
+    "formidable": "^1.1.1",
     "nodemon": "^1.15.1",
     "stat-mode": "^0.2.2"
   }

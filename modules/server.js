@@ -2,6 +2,7 @@ var http = require('http');
 var colors = require('colors');
 var handlers = require('./handlers.js');
 
+
 function start(){
 	function onRequest(request, response) {
 		console.log('Odebrano zapytanie');
@@ -15,6 +16,9 @@ function start(){
 		        case '/upload':
 		            handlers.upload(request, response);
 		            break;
+		        case '/show' :
+		        	handlers.show(request, response);
+		        	break;
 		        default:
 		            handlers.error(request, response);
 			}
