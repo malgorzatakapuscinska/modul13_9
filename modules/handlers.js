@@ -15,17 +15,31 @@ exports.upload = function(request, response) {
 		urlFile = "uploaded_files/" + files.upload.name;
 		urlFile = urlFile.toString();
 		
-		mv(files.upload.path, urlFile, function(err)
-		{if(err) throw error;
+		mv(files.upload.path, urlFile, function(err){
+			if(err) throw error;
 		console.log('Files moved succesfully');
 		});
-	fs.readFile('templates/upload.html',function(err, html){
-			response.writeHead('200', {'Content-Type': "text/html; charset=utf-8"});
-			response.write(html);
-			response.write("<img src='/show' />");
-			response.end();
-		});
 	});
+	
+	fs.readdir('./uploaded_files', function(err, files){
+		if(err) throw err;
+		readDir = files;
+	});
+		fs.readFile('templates/upload.html',function(error, html){
+				response.writeHead(200, {'Content-Type': "text/html; charset=utf-8"});
+				response.write(html);
+				/*response.write("<img src='/show' />");*/
+				
+				for(var i=0; i<readDir.length; i++){
+					var counter = readDir[i];
+					counter=counter.toString();
+					fs.readFile('./uploaded_files/' + counter, "binary", function(error, file){
+						response.writeHead(200, {"Content-Type": "image/jpg"});
+						response.write(file,'binary');
+						
+					});
+				}	
+		});
 }
 
 exports.welcome = function(request, response) {
