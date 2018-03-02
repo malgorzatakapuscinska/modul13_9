@@ -2,6 +2,7 @@
 var formidable = require('formidable');
 var mv = require('mv');
 var http = require('http');
+var urlFile;
 
 exports.upload = function(request, response) {
 	console.log("Rozpoczynam obsługę żądania upload.");
@@ -9,17 +10,9 @@ exports.upload = function(request, response) {
 	form.uploadDir = "./uploaded_files"; 
 	form.keepExtensions = true;
 	form.parse(request, function(error, fields, files){
-		console.log(files);
 		
-		var urlFile = "uploaded_files/" + files.upload.name;
-		var urlFile = urlFile.toString();
-		
-		fs.writeFile('path.txt', './uploaded_files/' + files.upload.name, 'utf-8', function(err){
-			if(err) throw err;
-			else{
-				console.log('File written');
-			}
-		});
+		urlFile = "uploaded_files/" + files.upload.name;
+		urlFile = urlFile.toString();
 		
 		mv(files.upload.path, urlFile, function(err)
 		{if(err) throw error;
@@ -52,15 +45,17 @@ exports.error = function(request, response) {
 }
 
 exports.show = function(request, response) {
-	var path = fs.readFileSync('path.txt', 'utf-8', function(err){
-		if(err) throw err;
-	});
-	console.log(path);
-	path = path.toString();
-	
-	fs.readFile(path, "binary", function(error, file) {
+	fs.readFile(urlFile, "binary", function(error, file) {
 		response.writeHead(200, {"Content-Type": "image/jpg"});
 		response.write(file, "binary");
 		response.end();
 	});
-}	
+}
+
+exports.css = function(request, response){
+	fs.readFile('../css/style.css', 'text/css', function(err, file){
+		response.writeHead(200, {"Content-Type": "text/css"});
+		response.write(file);
+        response.end();
+	});
+}
