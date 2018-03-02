@@ -7,7 +7,7 @@ function start(){
 	function onRequest(request, response) {
 		console.log('Odebrano zapytanie');
 		console.log("Zapytanie " + request.url + " odebrane.");
-		/*response.writeHead(200, {"Content-Type": "text/plain;  charset=utf-8"});*/
+		response.writeHead(200, {"Content-Type": "text/plain;  charset=utf-8"});
 		switch (request.url) { // switch rozróżniający zapytania
 		case '/':
 		case '/start':
@@ -21,6 +21,10 @@ function start(){
 			break;
 		case '/style.css' :
 			handlers.css(request, response);
+			break;
+		case '/templates/server.jpg' :
+			handlers.backgroundImage(request, response);
+			break;
 		default:
 			handlers.error(request, response);
 		}

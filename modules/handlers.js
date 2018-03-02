@@ -3,6 +3,7 @@ var formidable = require('formidable');
 var mv = require('mv');
 var http = require('http');
 var urlFile;
+var readDir;
 
 exports.upload = function(request, response) {
 	console.log("Rozpoczynam obsługę żądania upload.");
@@ -21,7 +22,6 @@ exports.upload = function(request, response) {
 	fs.readFile('templates/upload.html',function(err, html){
 			response.writeHead('200', {'Content-Type': "text/html; charset=utf-8"});
 			response.write(html);
-			response.write("received image:<br/>");
 			response.write("<img src='/show' />");
 			response.end();
 		});
@@ -53,9 +53,17 @@ exports.show = function(request, response) {
 }
 
 exports.css = function(request, response){
-	fs.readFile('css/style.css', function(err, file){
+	fs.readFile('css/style.css', function(error, file){
 		response.writeHead(200, {"Content-Type": "text/css"});
-		response.write(file);
+		response.write(file, 'binary');
         response.end();
+	});
+}
+
+exports.backgroundImage = function(request, response){
+	fs.readFile('templates/server.jpg', function(error, file){
+		response.writeHead(200, {"Content-Type": "image/jpg"});
+		response.write(file, "binary");
+		response.end();
 	});
 }
