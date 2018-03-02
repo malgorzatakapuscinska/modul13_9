@@ -53,7 +53,7 @@ exports.show = function(request, response) {
 }
 
 exports.css = function(request, response){
-	fs.readFile('../css/style.css', 'text/css', function(err, file){
+	fs.readFile('css/style.css', function(err, file){
 		response.writeHead(200, {"Content-Type": "text/css"});
 		response.write(file);
         response.end();
